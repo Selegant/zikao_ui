@@ -22,7 +22,7 @@
       <m-dropdown align="right" v-if="user" padding="0 10px">
         <a href="#" style="display: inline-block; padding: 0px; color: inherit">
           <img src="../assets/user.jpg" alt="" style="border-radius: 3px;vertical-align: middle;">
-          <span>{{user.username}}</span>
+          <span>{{user.userName}}</span>
           <span class="caret"></span>
         </a>
         <m-dropdown-panel>
@@ -86,13 +86,12 @@ export default {
       themes,
       themeType: '',
       showAside: true,
-      theme: {theme: {headerTheme: 'info'}}
+      theme: {theme: {headerTheme: 'info'}},
+      user: JSON.parse(sessionStorage.getItem('user'))
     }
   },
   computed: {
-    ...mapState({
-      user: ({user}) => user.user
-    })
+    // user: sessionStorage.getItem('user')
   },
   watch: {
     themeType (val) {
@@ -102,7 +101,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getLoginUser', 'logout']),
+    // ...mapActions(['getLoginUser', 'logout']),
     handleSwitchSide () {
       this.mini = !this.mini
       this.$emit('switch', this.mini)
@@ -122,7 +121,6 @@ export default {
     }
   },
   created () {
-    this.getLoginUser()
     var theme = localStorage.getItem('theme') || 'default'
     this.themeType = theme
   }

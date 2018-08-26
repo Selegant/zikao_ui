@@ -14,7 +14,7 @@
 </template>
 <script type="text/javascript">
 import VMenu from './vmenu'
-import menus from './menus'
+// import menus from './menus'
 export default {
   props: {
     collapse: Boolean,
@@ -25,7 +25,7 @@ export default {
   },
   data () {
     return {
-      menus,
+      menus: [],
       defaultActive: 'home',
       test: 'asdfasdf'
     }
@@ -43,6 +43,14 @@ export default {
   },
   created () {
     this.setCurrentRoute()
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    let userType = user.userType
+    this.$http.get('/menu/list?userType=' + userType).then(res => {
+      if (res.result === 1) {
+        console.log(res.data)
+        this.menus = res.data
+      }
+    })
   }
 }
 </script>

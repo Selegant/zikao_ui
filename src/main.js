@@ -55,7 +55,7 @@ Vue.use(MLoader)
 Vue.use(MContainer)
 
 
-var whiteList = ['demo', 'login']
+var whiteList = ['demo', 'login', 'p-register']
 router.beforeEach((to, from, next) => {
   NProgress.start()
   var token = sessionStorage.getItem('token')
@@ -113,7 +113,7 @@ Axios.interceptors.response.use(res => {
   return Promise.reject(err)
 })
 
-
+Axios.defaults.baseURL = '/api'
 Vue.prototype.$http = Axios
 Vue.http = Axios
 

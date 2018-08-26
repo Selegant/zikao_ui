@@ -1,3 +1,5 @@
+import Axios from 'axios'
+
 const menus = [
   {id: '0', label: '控制面板', path: '/', icon: 'fa fa-dashboard'},
   {
@@ -64,4 +66,9 @@ const menus = [
     label: '应用'
   }
 ]
+// let menus = []
+// Axios.get('/api/menu/list?roleId=' + sessionStorage.getItem('token')).then(res => {
+//   menus = res.data.data
+//   console.log(menus)
+// })
 export default menus
